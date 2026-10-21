@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Licori Automobili</title>
+    <title>Licori Automobili — Under the sheet</title>
+    <meta name="description" content="Bespoke analogue mid-engine continuations, built by hand in California. Programme 01 in development." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,147 +13,359 @@
     />
     <link rel="stylesheet" href="hark.css" />
     <link rel="stylesheet" href="hark-hero.css" />
+    <style>
+      @font-face { font-family: "Bodoni Moda"; src: url("BodoniModa.ttf") format("truetype"); font-weight: 400 900; font-style: normal; font-display: swap; }
+      @font-face { font-family: "Bodoni Moda"; src: url("BodoniModa-Italic.ttf") format("truetype"); font-weight: 400 900; font-style: italic; font-display: swap; }
+      @font-face { font-family: "Manrope"; src: url("Manrope.ttf") format("truetype"); font-weight: 200 800; font-style: normal; font-display: swap; }
+
+      :root {
+        --x-carbonio: #111315;
+        --x-avorio: #f3f1ec;
+        --x-azzurro: #bbc9d4;
+        --x-notte: #1b2a3a;
+        --x-argento: #9ea6ae;
+        --x-display: "Bodoni Moda", "Didot", "Bodoni 72", Georgia, serif;
+        --x-body: "Manrope", system-ui, sans-serif;
+        --x-pad: clamp(20px, 5vw, 72px);
+        --x-max: 1320px;
+        --x-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+      }
+      html { background: var(--x-carbonio); scroll-behavior: smooth; }
+      body { margin: 0; background: var(--x-carbonio); color: var(--x-avorio); font-family: var(--x-body); -webkit-font-smoothing: antialiased; }
+      .x-site { margin-inline: calc(50% - 50vw); margin-block: -12px -40px; font: 400 17px/1.7 var(--x-body); color: var(--x-avorio); }
+      .x-site img { display: block; max-width: 100%; }
+      .x-site a { color: inherit; }
+      .x-site ::selection { background: var(--x-azzurro); color: var(--x-carbonio); }
+
+      /* Header */
+      .x-head { position: fixed; inset: 0 0 auto 0; z-index: 30; display: flex; align-items: center; justify-content: space-between; padding: 22px var(--x-pad); transition: background 0.5s var(--x-ease), padding 0.5s var(--x-ease); }
+      .x-head.is-solid { background: rgba(17, 19, 21, 0.86); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); padding-block: 14px; border-bottom: 1px solid rgba(187, 201, 212, 0.14); }
+      .x-logo { display: inline-flex; align-items: center; min-height: 44px; }
+      .x-logo img { height: 16px; width: auto; }
+      .x-enquire { font: 500 12px/1 var(--x-body); letter-spacing: 0.22em; text-transform: uppercase; text-decoration: none; padding: 16px 0; border-bottom: 1px solid transparent; }
+      .x-enquire:hover { border-bottom-color: var(--x-azzurro); }
+
+      /* Shared type */
+      .x-kicker { margin: 0 0 28px; font: 500 12px/1.4 var(--x-body); letter-spacing: 0.24em; text-transform: uppercase; color: var(--x-azzurro); }
+      .x-kicker b { font-weight: 500; color: var(--x-argento); margin-right: 14px; }
+      .x-h { margin: 0 0 28px; font: 400 clamp(38px, 5.6vw, 76px)/1.04 var(--x-display); letter-spacing: -0.01em; }
+      .x-h em, .x-it { font-style: italic; }
+      .x-copy { max-width: 34em; margin: 0; color: var(--x-avorio); }
+      .x-copy + .x-copy { margin-top: 1.2em; }
+      .x-cap { margin: 16px 0 0; font: 500 12px/1.5 var(--x-body); letter-spacing: 0.22em; text-transform: uppercase; color: var(--x-argento); }
+      .x-cap::before { content: ""; display: inline-block; width: 28px; height: 1px; margin-right: 12px; vertical-align: middle; background: var(--x-azzurro); }
+      .x-num { display: block; margin-bottom: 14px; font: italic 400 22px/1 var(--x-display); color: var(--x-argento); }
+
+      .x-wrap { max-width: var(--x-max); margin: 0 auto; padding-inline: var(--x-pad); }
+      .x-sec { padding-block: clamp(110px, 16vw, 220px); }
+
+      /* Hero */
+      .x-hero { position: relative; min-height: 100svh; display: flex; align-items: flex-end; overflow: hidden; background: var(--x-carbonio); }
+      .x-hero__img { position: absolute; inset: -6% 0; width: 100%; height: 112%; object-fit: cover; opacity: 0; transform: scale(1.04); transition: opacity 2.2s var(--x-ease), transform 3.2s var(--x-ease); }
+      .x-hero.is-in .x-hero__img { opacity: 1; transform: scale(1); }
+      .x-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(17, 19, 21, 0.55) 0%, rgba(17, 19, 21, 0) 28%, rgba(17, 19, 21, 0) 52%, rgba(17, 19, 21, 0.92) 100%); }
+      .x-hero__copy { position: relative; z-index: 1; width: 100%; max-width: var(--x-max); margin: 0 auto; padding: 0 var(--x-pad) clamp(72px, 11vh, 120px); }
+      .x-hero h1 { margin: 0 0 18px; font: 400 clamp(56px, 11vw, 168px)/0.94 var(--x-display); letter-spacing: -0.02em; }
+      .x-hero__sub { margin: 0; font: italic 400 clamp(19px, 2.2vw, 28px)/1.35 var(--x-display); color: var(--x-avorio); opacity: 0.86; }
+      .x-cue { position: absolute; z-index: 1; left: 50%; bottom: 26px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 10px; font: 500 12px/1 var(--x-body); letter-spacing: 0.28em; text-transform: uppercase; color: var(--x-argento); text-decoration: none; padding: 6px 12px; }
+      .x-cue::after { content: ""; width: 1px; height: 38px; background: linear-gradient(var(--x-azzurro), transparent); animation: x-cue 2.6s var(--x-ease) infinite; transform-origin: top; }
+      @keyframes x-cue { 0% { transform: scaleY(0); } 50% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
+
+      /* Essay */
+      .x-essay { display: grid; grid-template-columns: 1fr; gap: 0; }
+      .x-essay__body { max-width: 720px; margin-left: clamp(0px, 14vw, 220px); }
+      .x-lede { margin: 0; font: 400 clamp(19px, 1.9vw, 23px)/1.62 var(--x-display); }
+      .x-lede::first-letter { float: left; font: 400 clamp(84px, 9vw, 128px)/0.8 var(--x-display); margin: 0.08em 0.1em 0 -0.02em; color: var(--x-azzurro); }
+      .x-essay__body .x-copy { margin-top: 1.6em; max-width: 36em; color: var(--x-argento); }
+      .x-quote { margin: clamp(96px, 12vw, 170px) 0 0; padding: 0; text-align: center; }
+      .x-quote p { margin: 0 auto; max-width: 14em; font: italic 400 clamp(40px, 6.6vw, 96px)/1.08 var(--x-display); letter-spacing: -0.01em; }
+      .x-quote::before { content: ""; display: block; width: 1px; height: 64px; margin: 0 auto 40px; background: var(--x-azzurro); }
+
+      /* Spreads */
+      .x-spread { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: clamp(20px, 3vw, 48px); align-items: start; }
+      .x-spread__media { grid-column: 1 / span 7; }
+      .x-spread__text { grid-column: 9 / span 4; padding-top: clamp(40px, 14vw, 220px); }
+      .x-spread--right .x-spread__media { grid-column: 7 / span 6; grid-row: 1; }
+      .x-spread--right .x-spread__text { grid-column: 1 / span 5; grid-row: 1; padding-top: clamp(40px, 8vw, 120px); }
+      .x-spread--portrait .x-spread__media { grid-column: 2 / span 5; margin-top: clamp(0px, 6vw, 90px); }
+      .x-spread--portrait .x-spread__text { grid-column: 8 / span 4; padding-top: clamp(24px, 4vw, 60px); }
+      .x-frame { overflow: hidden; }
+      .x-frame img { width: 100%; height: auto; }
+
+      /* Light editorial ground */
+      .x-light { background: var(--x-avorio); color: var(--x-carbonio); }
+      .x-light .x-copy { color: var(--x-carbonio); }
+      .x-light .x-kicker { color: var(--x-notte); }
+      .x-light .x-kicker b, .x-light .x-cap, .x-light .x-num { color: #5d656d; }
+      .x-light .x-cap::before { background: var(--x-notte); }
+
+      /* Full-bleed */
+      .x-bleed { position: relative; min-height: 92svh; display: flex; overflow: hidden; }
+      .x-bleed__img { position: absolute; inset: -8% 0; width: 100%; height: 116%; object-fit: cover; will-change: transform; }
+      .x-bleed::after { content: ""; position: absolute; inset: 0; pointer-events: none; }
+      .x-bleed--carbon { align-items: flex-end; }
+      .x-bleed--carbon::after { background: linear-gradient(90deg, rgba(17, 19, 21, 0) 30%, rgba(17, 19, 21, 0.86) 100%), linear-gradient(0deg, rgba(17, 19, 21, 0.7), rgba(17, 19, 21, 0) 50%); }
+      .x-bleed--carbon .x-bleed__copy { margin-left: auto; max-width: 480px; }
+      .x-bleed--canyon { align-items: flex-start; }
+      .x-bleed--canyon::after { background: linear-gradient(180deg, rgba(17, 19, 21, 0.78) 0%, rgba(17, 19, 21, 0.2) 45%, rgba(17, 19, 21, 0) 70%, rgba(17, 19, 21, 0.6) 100%); }
+      .x-bleed--canyon .x-bleed__copy { max-width: 760px; padding-top: clamp(120px, 18vh, 200px); }
+      .x-bleed__inner { position: relative; z-index: 1; width: 100%; max-width: var(--x-max); margin: 0 auto; padding: clamp(80px, 12vh, 140px) var(--x-pad); display: flex; flex-direction: column; }
+      .x-bleed .x-cap { position: absolute; z-index: 1; right: var(--x-pad); bottom: 24px; margin: 0; }
+
+      /* Edition */
+      .x-edition { background: var(--x-notte); text-align: center; padding-block: clamp(140px, 20vw, 280px); }
+      .x-edition .x-h { max-width: 15em; margin-inline: auto; font-size: clamp(34px, 4.8vw, 64px); }
+      .x-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 820px; margin: clamp(72px, 9vw, 120px) auto; border-block: 1px solid rgba(187, 201, 212, 0.28); }
+      .x-fact { padding: 40px 16px 44px; }
+      .x-fact + .x-fact { border-left: 1px solid rgba(187, 201, 212, 0.28); }
+      .x-fact dt { font: 500 12px/1.4 var(--x-body); letter-spacing: 0.24em; text-transform: uppercase; color: var(--x-azzurro); }
+      .x-fact dd { margin: 18px 0 0; font: 400 clamp(56px, 7vw, 96px)/1 var(--x-display); }
+      .x-edition .x-copy { margin: 0 auto; max-width: 30em; font: italic 400 clamp(18px, 1.8vw, 22px)/1.5 var(--x-display); color: var(--x-avorio); }
+
+      /* Enquire */
+      .x-enq { text-align: center; padding-block: clamp(150px, 20vw, 280px); }
+      .x-enq .x-h { font-size: clamp(44px, 7.4vw, 112px); }
+      .x-enq .x-copy { margin: 0 auto; color: var(--x-argento); }
+      .x-cta { display: inline-block; margin-top: 56px; padding: 14px 2px; font: italic 400 clamp(22px, 2.4vw, 30px)/1.2 var(--x-display); text-decoration: none; background: linear-gradient(var(--x-azzurro), var(--x-azzurro)) 0 100% / 100% 1px no-repeat; transition: background-size 0.6s var(--x-ease), color 0.4s; }
+      .x-cta:hover { color: var(--x-azzurro); background-size: 40% 1px; background-position: 50% 100%; }
+      .x-sub { margin: 36px 0 0; font: 500 12px/1.8 var(--x-body); letter-spacing: 0.18em; text-transform: uppercase; color: var(--x-argento); }
+      .x-sub a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: underline; text-decoration-color: var(--x-azzurro); text-underline-offset: 5px; text-decoration-thickness: 1px; }
+      .x-sub a:hover { color: var(--x-azzurro); }
+
+      /* Footer */
+      .x-foot { border-top: 1px solid rgba(187, 201, 212, 0.16); padding-block: 56px 48px; }
+      .x-foot__row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 28px 40px; }
+      .x-foot__mark { display: flex; align-items: center; gap: 18px; }
+      .x-foot__mark img { height: 13px; width: auto; }
+      .x-tri { display: flex; width: 36px; height: 2px; }
+      .x-tri span { flex: 1; }
+      .x-tri span:nth-child(1) { background: #008c45; }
+      .x-tri span:nth-child(2) { background: #f4f5f0; }
+      .x-tri span:nth-child(3) { background: #cd212a; }
+      .x-foot__links { display: flex; gap: 28px; }
+      .x-foot__links a { display: inline-flex; align-items: center; min-height: 44px; min-width: 44px; justify-content: center; text-decoration: none; font: 500 12px/1 var(--x-body); letter-spacing: 0.22em; text-transform: uppercase; }
+      .x-foot__links a:hover { color: var(--x-azzurro); }
+      .x-foot__small { margin: 36px 0 0; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 32px; font: 400 12.5px/1.6 var(--x-body); color: var(--x-argento); }
+      .x-foot__small p { margin: 0; }
+      .x-foot__place { font: 500 12px/1 var(--x-body); letter-spacing: 0.22em; text-transform: uppercase; color: var(--x-argento); }
+
+      .x-site :focus-visible { outline: 1px solid var(--x-azzurro); outline-offset: 4px; }
+
+      /* Reveal */
+      .x-js .x-reveal { opacity: 0; transform: translateY(28px); transition: opacity 1.4s var(--x-ease), transform 1.4s var(--x-ease); }
+      .x-js .x-reveal.is-in { opacity: 1; transform: none; }
+      .x-js .x-reveal--d1 { transition-delay: 0.15s; }
+      .x-js .x-reveal--d2 { transition-delay: 0.3s; }
+
+      @media (max-width: 860px) {
+        .x-site { font-size: 16px; }
+        .x-spread { grid-template-columns: 1fr; row-gap: 48px; }
+        .x-spread .x-spread__media, .x-spread--right .x-spread__media, .x-spread--portrait .x-spread__media { grid-column: 1; grid-row: auto; margin-top: 0; }
+        .x-spread .x-spread__text, .x-spread--right .x-spread__text, .x-spread--portrait .x-spread__text { grid-column: 1; grid-row: auto; padding-top: 0; }
+        .x-spread--right .x-spread__media { order: -1; }
+        .x-spread--portrait .x-spread__media { width: 86%; }
+        .x-spread--right .x-spread__media { width: 86%; margin-left: auto; }
+        .x-essay__body { margin-left: 0; }
+        .x-bleed { min-height: 82svh; }
+        .x-bleed--carbon::after { background: linear-gradient(0deg, rgba(17, 19, 21, 0.92) 10%, rgba(17, 19, 21, 0) 70%); }
+        .x-bleed .x-cap { left: var(--x-pad); right: auto; }
+        .x-facts { grid-template-columns: 1fr; }
+        .x-fact + .x-fact { border-left: 0; border-top: 1px solid rgba(187, 201, 212, 0.28); }
+        .x-fact { padding: 32px 16px; }
+        .x-foot__row { flex-direction: column; align-items: flex-start; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .x-js .x-reveal, .x-hero__img { opacity: 1; transform: none; transition: none; }
+        .x-cue::after { animation: none; }
+        html { scroll-behavior: auto; }
+      }
+    </style>
+    <script>document.documentElement.classList.add("x-js");</script>
   </head>
   <body>
     <div class="page" id="top">
-      <header class="nav glass" data-auto></header>
-      <main class="main">
-        <section class="hero">
-          <img class="hero__img" src="hero.jpg" alt="An unbadged mid-engine car under a cover in a dark atelier, lit from behind" />
-          <div class="hero__copy">
-            <p class="hero__eyebrow">Driven by Instinct. Defined by Craft.</p>
-            <h1>Licori Automobili</h1>
-            <p class="hero__sub">Modern continuations of the analog performance car, built in California.</p>
-          </div>
-          <aside class="callout" aria-label="Partnership">
-            <p class="callout__head"><span class="hark-mark" data-size="16"></span> Partners</p>
-            <p class="callout__lead">
-              <strong>We are selecting the specialists who will build our first program with us.</strong>
-            </p>
-            <p class="fineprint">Program details shared under mutual NDA.</p>
-            <a class="btn" href="mailto:contact@licori.co?subject=Licori%20Automobili%20partnership">Start a conversation</a>
-          </aside>
-        </section>
+      <div class="x-site">
+        <header class="x-head" id="x-head">
+          <a class="x-logo" href="#top" aria-label="Licori Automobili, back to top"><img src="B_badge_mono-avorio_transparent.svg" alt="Licori" /></a>
+          <a class="x-enquire" href="#enquire">Enquire</a>
+        </header>
 
-        <section class="section" id="believe" data-nav="Belief">
-          <div class="head">
-            <p class="head__eyebrow">What we believe</p>
-            <h2>We don't emulate icons. We evolve them.</h2>
-          </div>
-          <div class="prose">
-            <p>We keep the soul of the analog car: natural aspiration, a real gearbox, feedback through the wheel.</p>
-            <p>We remove its compromises with modern engineering, materials and reliability.</p>
-            <p>These cars are meant to be driven on canyon roads, not stored.</p>
-          </div>
-        </section>
+        <main>
+          <section class="x-hero" id="x-hero" aria-label="Under the sheet">
+            <img class="x-hero__img" src="web_hero_sheet_2x.jpg" alt="A car hidden beneath a fitted sheet in a dark atelier" />
+            <div class="x-hero__copy">
+              <p class="x-kicker x-reveal">Programme 01 · In development</p>
+              <h1 class="x-reveal x-reveal--d1">Under the <em>sheet.</em></h1>
+              <p class="x-hero__sub x-reveal x-reveal--d2">Born in Modena. Finished in California.</p>
+            </div>
+            <a class="x-cue" href="#idea">Scroll</a>
+          </section>
 
-        <section class="section" id="program" data-nav="Program 01">
-          <div class="head">
-            <p class="head__eyebrow">Program 01</p>
-            <h2>A low-volume, mid-engine continuation.</h2>
-            <p class="head__sub"><span class="chip">In development</span></p>
-          </div>
-          <div class="cards">
-            <div>
-              <h3>Naturally aspirated</h3>
-              <p>High-revving. No forced induction.</p>
-            </div>
-            <div>
-              <h3>Street-first</h3>
-              <p>Built for the road. Capable on track.</p>
-            </div>
-            <div>
-              <h3>Road-car service</h3>
-              <p>Engineered to be serviced like a road car, not a race car.</p>
-            </div>
-          </div>
-          <p class="fineprint">In development. Public debut targeted for 2027. Details under NDA.</p>
-        </section>
-
-        <section class="section" id="process" data-nav="Process">
-          <div class="head">
-            <p class="head__eyebrow">How we work</p>
-            <h2>Four stages, from brief to numbered car.</h2>
-          </div>
-          <div class="steps">
-            <article class="step">
-              <div class="step__intro"><p class="step__num">01</p><p class="step__eyebrow">In-house</p></div>
-              <div><h3>Define</h3><p>We set the technical brief and targets in-house.</p></div>
-            </article>
-            <article class="step">
-              <div class="step__intro"><p class="step__num">02</p><p class="step__eyebrow">Per system</p></div>
-              <div>
-                <h3>Partner</h3>
-                <p>We select a specialist partner for each system.</p>
-                <ul class="step__pills">
-                  <li>Powertrain</li>
-                  <li>Composites</li>
-                  <li>Chassis</li>
-                  <li>Design</li>
-                </ul>
+          <section class="x-sec" id="idea">
+            <div class="x-wrap x-essay">
+              <div class="x-essay__body">
+                <span class="x-num x-reveal">I.</span>
+                <p class="x-kicker x-reveal">No. 01 — The idea</p>
+                <p class="x-lede x-reveal">There was a moment, around the turn of the millennium, when the mid-engine car was still mechanical. A gated manual. A naturally aspirated V8 that asked for nine thousand revolutions and meant every one of them. Then the screens arrived, and the paddles, and the turbos, and something went quiet.</p>
+                <p class="x-copy x-reveal">Licori Automobili exists to pick up where that moment left off. We take one of the last analogue V8s to leave Modena and rebuild it, by hand and in small numbers, as the car its engineers might have built with today’s materials and none of the compromises.</p>
               </div>
-            </article>
-            <article class="step">
-              <div class="step__intro"><p class="step__num">03</p><p class="step__eyebrow">California</p></div>
-              <div><h3>Prototype</h3><p>The first prototype is built and validated in California.</p></div>
-            </article>
-            <article class="step">
-              <div class="step__intro"><p class="step__num">04</p><p class="step__eyebrow">Numbered</p></div>
-              <div><h3>Limited production</h3><p>A small, numbered run.</p></div>
-            </article>
-          </div>
-        </section>
+              <blockquote class="x-quote x-reveal">
+                <p>We don’t emulate icons. We evolve them.</p>
+              </blockquote>
+            </div>
+          </section>
 
-        <section class="section" id="partners" data-nav="Partners">
-          <div class="head">
-            <p class="head__eyebrow">What we look for</p>
-            <h2>Specialists who build, not just supply.</h2>
-          </div>
-          <ul class="checklist">
-            <li><span class="checklist__item">Naturally aspirated engines <small>Proven development and builds</small></span></li>
-            <li><span class="checklist__item">Carbon composites <small>Composite and body engineering</small></span></li>
-            <li><span class="checklist__item">Chassis and suspension <small>Including full-vehicle integration</small></span></li>
-            <li><span class="checklist__item">Timeline discipline <small>Comfort with an aggressive, fixed show date</small></span></li>
-            <li><span class="checklist__item">Discretion <small>Mutual NDA before program details</small></span><span class="chip chip--solid">NDA first</span></li>
-          </ul>
-        </section>
+          <section class="x-sec" id="heart" style="padding-top: 0">
+            <div class="x-wrap x-spread">
+              <figure class="x-spread__media x-reveal" style="margin: 0">
+                <div class="x-frame"><img src="web_engine_v2.jpg" alt="Mid-mounted V8 engine bay seen from above" /></div>
+                <figcaption class="x-cap">Mid-mounted V8, as it left the factory.</figcaption>
+              </figure>
+              <div class="x-spread__text">
+                <span class="x-num x-reveal">II.</span>
+                <p class="x-kicker x-reveal">No. 02 — Heart</p>
+                <h2 class="x-h x-reveal">Three point <em>nine.</em></h2>
+                <p class="x-copy x-reveal">The name of our first car is a number. The flat-plane V8 at its centre grows from 3.6 to 3.95 litres, still breathing without a turbocharger, still built to sing past nine thousand rpm. More than five hundred horsepower, delivered the old way: through your right foot and a metal gate.</p>
+              </div>
+            </div>
+          </section>
 
-        <section class="section" id="contact" data-nav="Contact">
-          <div class="head">
-            <p class="head__eyebrow">Leadership and contact</p>
-            <h2>Talk to the people building it.</h2>
-          </div>
-          <div class="cards">
-            <div>
-              <h3>Brandon Lico Weigelt</h3>
-              <p>Co-CEO</p>
+          <section class="x-bleed x-bleed--carbon" id="skin">
+            <img class="x-bleed__img" data-parallax="0.08" src="web_carbon.jpg" alt="The weave of raw carbon fibre under low light" />
+            <div class="x-bleed__inner">
+              <div class="x-bleed__copy">
+                <span class="x-num x-reveal">III.</span>
+                <p class="x-kicker x-reveal">No. 03 — Skin</p>
+                <h2 class="x-h x-reveal">The same line, in a <em>lighter hand.</em></h2>
+                <p class="x-copy x-reveal">Every body panel is remade in carbon fibre, then painted, so you’ll rarely see it. You’ll feel it instead, in the way the car turns in and settles.</p>
+              </div>
             </div>
-            <div>
-              <h3>Lance Taylor</h3>
-              <p>Co-CEO</p>
+          </section>
+
+          <section class="x-sec x-light" id="atelier">
+            <div class="x-wrap x-spread x-spread--right">
+              <figure class="x-spread__media x-reveal" style="margin: 0">
+                <div class="x-frame"><img src="web_hands.jpg" alt="Hands laying up carbon composite in the atelier" /></div>
+                <figcaption class="x-cap">Pre-preg carbon, autoclave-cured.</figcaption>
+              </figure>
+              <div class="x-spread__text">
+                <span class="x-num x-reveal">IV.</span>
+                <p class="x-kicker x-reveal">No. 04 — Atelier</p>
+                <h2 class="x-h x-reveal">Made by specialists, <em>not suppliers.</em></h2>
+                <p class="x-copy x-reveal">The methods come from Formula 1 and aerospace: pre-preg carbon, autoclave-cured, held to tolerances measured in tenths of a millimetre. What makes it ours is attention. A craftsman’s eye on every ply, every seam and every fastener, before each car is assembled, tested and signed off in California.</p>
+              </div>
             </div>
-            <div>
-              <h3>Reach us</h3>
-              <ul>
-                <li><a class="link" href="mailto:contact@licori.co?subject=Licori%20Automobili%20partnership">contact@licori.co</a></li>
-                <li><a class="link" href="https://www.instagram.com/licori_automobili/" target="_blank" rel="noopener">Instagram</a></li>
-                <li><a class="link" href="https://x.com/Licori_Auto" target="_blank" rel="noopener">X</a></li>
-              </ul>
+          </section>
+
+          <section class="x-sec" id="interior">
+            <div class="x-wrap x-spread x-spread--portrait">
+              <figure class="x-spread__media x-reveal" style="margin: 0">
+                <div class="x-frame"><img src="web_leather.jpg" alt="Cognac leather, carbon and cashmere cloth for the cabin" /></div>
+              </figure>
+              <div class="x-spread__text">
+                <span class="x-num x-reveal">V.</span>
+                <p class="x-kicker x-reveal">No. 05 — Interior</p>
+                <h2 class="x-h x-reveal">Cognac, carbon, <em>cashmere.</em></h2>
+                <p class="x-copy x-reveal">Heritage leather that will age the way a good saddle does. Exposed carbon where the hand never rests. Wool and cashmere cloth from Italy’s finest mills where it does. Every cabin is specified with its owner, never chosen from a list.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="x-bleed x-bleed--canyon" id="purpose">
+            <img class="x-bleed__img" data-parallax="0.08" src="web_canyon.jpg" alt="An empty canyon road winding through the hills" />
+            <div class="x-bleed__inner">
+              <div class="x-bleed__copy">
+                <span class="x-num x-reveal">VI.</span>
+                <p class="x-kicker x-reveal">No. 06 — Purpose</p>
+                <h2 class="x-h x-it x-reveal">Meant for canyon roads, not climate-controlled garages.</h2>
+                <p class="x-copy x-reveal">Street-first, capable on track, and serviced like a road car, so it gets driven.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="x-edition" id="edition">
+            <div class="x-wrap">
+              <span class="x-num x-reveal">VII.</span>
+              <p class="x-kicker x-reveal">No. 07 — Edition</p>
+              <h2 class="x-h x-reveal">Fifty cars. <em>Each one already spoken for before work begins.</em></h2>
+              <dl class="x-facts x-reveal">
+                <div class="x-fact"><dt>Programme</dt><dd>01</dd></div>
+                <div class="x-fact"><dt>Numbered cars</dt><dd>50</dd></div>
+                <div class="x-fact"><dt>Public debut</dt><dd>2027</dd></div>
+              </dl>
+              <p class="x-copy x-reveal">Each car is built on its owner’s own donor and specified with them, one by one.</p>
+            </div>
+          </section>
+
+          <section class="x-enq" id="enquire">
+            <div class="x-wrap">
+              <span class="x-num x-reveal">VIII.</span>
+              <p class="x-kicker x-reveal">No. 08 — Enquire</p>
+              <h2 class="x-h x-reveal">The sheet comes off <em>in 2027.</em></h2>
+              <p class="x-copy x-reveal">A small number of founding commissions are being discussed privately, under NDA.</p>
+              <a class="x-cta x-reveal" href="mailto:contact@licori.co?subject=Licori%20Automobili%20%E2%80%94%20Private%20enquiry">Request a private conversation</a>
+              <p class="x-sub x-reveal">Specialists and partners: <a href="mailto:contact@licori.co?subject=Licori%20Automobili%20partnership">partnerships@ the same address</a></p>
+            </div>
+          </section>
+        </main>
+
+        <footer class="x-foot">
+          <div class="x-wrap">
+            <div class="x-foot__row">
+              <div class="x-foot__mark">
+                <img src="B_badge_mono-avorio_transparent.svg" alt="Licori Automobili" />
+                <span class="x-tri" aria-hidden="true"><span></span><span></span><span></span></span>
+                <span class="x-foot__place">Beverly Hills, California</span>
+              </div>
+              <nav class="x-foot__links" aria-label="Social">
+                <a href="https://www.instagram.com/licori_automobili/" target="_blank" rel="noopener">Instagram</a>
+                <a href="https://x.com/Licori_Auto" target="_blank" rel="noopener">X</a>
+              </nav>
+            </div>
+            <div class="x-foot__small">
+              <p>© 2026 Licori Automobili LLC</p>
             </div>
           </div>
-          <div class="links">
-            <a class="btn" href="mailto:contact@licori.co?subject=Licori%20Automobili%20partnership">Start a conversation</a>
-          </div>
-        </section>
-      </main>
-      <footer class="foot">
-        <p>© 2026 Licori Automobili LLC</p>
-        <nav aria-label="Back to sections" data-auto></nav>
-        <a class="badge" href="https://hark.com/" target="_blank" rel="noopener"
-          ><span class="hark-mark"></span><span>built by hark</span></a
-        >
-      </footer>
+        </footer>
+      </div>
     </div>
     <script src="hark.js"></script>
+    <script>
+      (function () {
+        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var hero = document.getElementById("x-hero");
+        var head = document.getElementById("x-head");
+        requestAnimationFrame(function () { hero.classList.add("is-in"); });
+
+        var items = [].slice.call(document.querySelectorAll(".x-reveal"));
+        if (reduce || !("IntersectionObserver" in window)) {
+          items.forEach(function (el) { el.classList.add("is-in"); });
+        } else {
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) { e.target.classList.add("is-in"); io.unobserve(e.target); }
+            });
+          }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+          items.forEach(function (el) { io.observe(el); });
+        }
+
+        var layers = reduce ? [] : [].slice.call(document.querySelectorAll("[data-parallax]"));
+        var ticking = false;
+        function update() {
+          ticking = false;
+          var vh = window.innerHeight;
+          head.classList.toggle("is-solid", window.scrollY > vh * 0.7);
+          layers.forEach(function (img) {
+            var box = img.parentNode.getBoundingClientRect();
+            if (box.bottom < 0 || box.top > vh) return;
+            var shift = (box.top + box.height / 2 - vh / 2) * -parseFloat(img.getAttribute("data-parallax"));
+            img.style.transform = "translate3d(0," + shift.toFixed(1) + "px,0)";
+          });
+        }
+        window.addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+        window.addEventListener("resize", update);
+        update();
+      })();
+    </script>
   </body>
 </html>
