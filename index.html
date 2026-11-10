@@ -179,6 +179,13 @@
         .x-cue::after { animation: none; }
         html { scroll-behavior: auto; }
       }
+
+      /* Legibility (2026-11-10): stop Bodoni's display optical size from thinning hairlines to nothing on dark backgrounds */
+      .x-h, .x-num, .x-hero h1, .x-hero__sub, .x-lede, .x-lede::first-letter, .x-quote p, .x-fact dd, .x-edition .x-copy, .x-cta {
+        font-optical-sizing: none; font-variation-settings: "opsz" 14; font-weight: 500;
+      }
+      .x-hero__sub, .x-edition .x-copy, .x-lede, .x-num { font-variation-settings: "opsz" 11; }
+      .x-hero__sub { opacity: 0.94; }
     </style>
     <script>document.documentElement.classList.add("x-js");</script>
   </head>
@@ -196,7 +203,7 @@
             <div class="x-hero__copy">
               <p class="x-kicker x-reveal">Programme 01 · In development</p>
               <h1 class="x-reveal x-reveal--d1">Under the <em>sheet.</em></h1>
-              <p class="x-hero__sub x-reveal x-reveal--d2">Born in Modena. Finished in California.</p>
+              <p class="x-hero__sub x-reveal x-reveal--d2">Driven by Instinct. Defined by Craft.</p>
             </div>
             <a class="x-cue" href="#idea">Scroll</a>
           </section>
